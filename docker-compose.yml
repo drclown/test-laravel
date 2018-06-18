@@ -1,0 +1,18 @@
+version: '3'
+services:
+  httpd:
+    image: tompouce/httpd:1.1
+    ports:
+     - "8080:80"
+    volumes: 
+      - ./conf/apache/test-laravel.conf:/etc/apache2/sites-available/test-laravel.conf
+      - ./app/:/var/www/html/test-laravel
+    environment:
+      FPM_HOST: php:9000
+    command: ["a2ensite", "test-laravel"],["/usr/sbin/apachectl", "restart"]
+    links:
+      - php
+  php:    
+    image: tompouce/php:1.1
+    volumes: 
+      - ./app/:/var/www/html/test-laravel
