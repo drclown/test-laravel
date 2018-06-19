@@ -6,7 +6,7 @@ services:
      - "8081:80"
     volumes: 
       - ./conf/apache/test-laravel.conf:/etc/apache2/sites-available/test-laravel.conf
-      - ./app/:/var/www/html/test-laravel
+      - ./src/:/var/www/html/test-laravel
     environment:
       FPM_HOST: php:9000
     command: bash -c "a2ensite test-laravel; /usr/sbin/apache2ctl -DFOREGROUND;"
@@ -15,5 +15,5 @@ services:
   php:    
     image: tompouce/php:1.3
     volumes: 
-      - ./app/:/var/www/html/test-laravel
+      - ./src/:/var/www/html/test-laravel
       - ./composer.phar/:/var/www/html/composer.phar
