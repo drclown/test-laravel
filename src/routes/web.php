@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/articles/{n}', function ($n) {
+    return view('article')->with('numero', $n);
+});
+
+Route::get('/phpinfo', function () {
+    phpinfo();
+    return response("");
+});
